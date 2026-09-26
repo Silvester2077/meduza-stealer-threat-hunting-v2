@@ -93,9 +93,14 @@ After identifying the sources, we created a data source mapping for the project.
 | VirusTotal | Open/Service | Hashes, files, domains, URLs | Indicator investigation |
 | MISP | Threat intelligence platform | IOCs and relationships | Organization and correlation |
 
-![Data source mapping](data-source-mapping.png)
+<img width="2720" height="1384" alt="week2_data_source_mapping" src="https://github.com/user-attachments/assets/fe0095f6-7c5b-44e0-89c1-c98d08e6c9eb" />
+
 
 *Figure 10. Data source mapping for the Meduza Stealer project.*
+> **Note on AI use:** The diagram in Figure 10 was generated with the help of an AI
+> tool (Claude) to visualize our own data source mapping table above. The underlying
+> content (sources, purposes, and workflow) was determined by the team; the AI was
+> used only to render it as a visual diagram.
 
 ## 2.7 Initial IOC Collection
 

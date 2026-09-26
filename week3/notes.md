@@ -13,7 +13,6 @@ The processing workflow included four main steps:
 3. Data enrichment
 4. IOC correlation
 
-![Data processing workflow](data-processing-workflow.png)
 
 *Figure 12. Data processing workflow used in the project.*
 

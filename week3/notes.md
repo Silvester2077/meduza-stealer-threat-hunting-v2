@@ -34,7 +34,8 @@ For example, if the same hash appeared more than once, it was kept only once in 
 
 *Figure 13. Initial IOC dataset before filtering.*
 
-![Data after filtering](data-after-filtering.png)
+<img width="879" height="169" alt="image" src="https://github.com/user-attachments/assets/c6fccabf-c6ea-4b64-bada-42836fe2c45b" />
+
 
 *Figure 14. IOC dataset after filtering.*
 

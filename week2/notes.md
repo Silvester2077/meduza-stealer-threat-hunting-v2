@@ -62,7 +62,8 @@ The collected information can include:
 - domains
 - IP addresses
 
-![VirusTotal result](virustotal-result.png)
+<img width="1821" height="800" alt="image" src="https://github.com/user-attachments/assets/dd01f9ee-1b26-4622-9e3f-c28a4fbf59a8" />
+
 
 *Figure 8. VirusTotal result related to one of the collected indicators.*
 

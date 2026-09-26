@@ -15,7 +15,8 @@ security system.
 For this project, we mainly use open-source information because it is accessible for
 research and can be documented in our GitHub repository.
 
-![OSINT source](osint-source.png)
+<img width="1109" height="764" alt="image" src="https://github.com/user-attachments/assets/1ed55f84-6100-45f2-aa5c-24cd39cfc52d" />
+
 
 *Figure 5. Example of an open-source threat intelligence resource.*
 

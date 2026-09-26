@@ -16,7 +16,8 @@ The main types of information that can be useful for our research include:
 - detection information
 - relationships between different indicators
 
-![Meduza Stealer information](meduza-info.png)
+<img width="1794" height="852" alt="image" src="https://github.com/user-attachments/assets/5484831e-44a3-4c16-a199-910731e26416" />
+
 
 *Figure 1. Public information about Meduza Stealer.*
 

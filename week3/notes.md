@@ -58,7 +58,8 @@ For example:
 
 We also removed unnecessary spaces and made the formatting consistent across the dataset.
 
-![Data normalization](data-normalization.png)
+<img width="1151" height="171" alt="image" src="https://github.com/user-attachments/assets/626df211-210e-4b55-8c48-a7feb8941e30" />
+
 
 *Figure 15. Normalized IOC dataset.*
 

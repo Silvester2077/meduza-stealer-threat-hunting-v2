@@ -28,7 +28,6 @@ search for publicly available information.
 We used it as a reference for identifying possible sources that could provide
 information related to malware and threat intelligence.
 
-![OSINT Framework](osint-framework.png)
 
 *Figure 6. OSINT Framework used for identifying information sources.*
 

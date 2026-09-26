@@ -119,6 +119,7 @@ The initial dataset can contain several IOC types:
 during our own OSINT session; the hash and IP were taken from public reporting as a
 starting reference point.*
 
-![Collected indicators](collected-indicators.png)
+<img width="1620" height="683" alt="image" src="https://github.com/user-attachments/assets/75198e33-21f0-480f-9e61-fcac43ef99dc" />
+
 
 *Figure 11. Initial IOC collection.*

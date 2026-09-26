@@ -85,9 +85,9 @@ to a specific malware-related research topic.
 
 | Week | Date | Contributor | Summary of commit |
 |---|---|---|---|
-| 1 | | | Glossary + CTI types + sources added |
-| 2 | | | OSINT collection + data source mapping + initial IOCs added |
-| 3 | | | Filtering, normalization, enrichment, correlation added |
+| 1 |08.09.2026 - 13.09.2026|Meiram | Glossary + CTI types + sources added |
+| 2 |13.09.2026 - 18.09.2026|Alikhan | OSINT collection + data source mapping + initial IOCs added |
+| 3 |18.09.2026 - 23.09.2026 |Ulan| Filtering, normalization, enrichment, correlation added |
 
 ## Defense Notes (7–8 min per group)
 

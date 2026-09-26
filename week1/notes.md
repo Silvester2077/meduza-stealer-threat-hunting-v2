@@ -80,6 +80,7 @@ intelligence.
 | Threat intelligence platform | MISP | Indicators and threat intelligence |
 | Public reports | Security blogs/reports | Malware and campaign information |
 
-![Example of a CTI source](cti-source-example.png)
+<img width="1178" height="859" alt="image" src="https://github.com/user-attachments/assets/6c4897a8-3a62-4f54-bff6-36c0f80044e6" />
+
 
 *Figure 4. Example of a publicly available threat intelligence source.*

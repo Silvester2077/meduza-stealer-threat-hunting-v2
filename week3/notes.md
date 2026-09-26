@@ -84,7 +84,9 @@ For our Meduza Stealer project, enrichment can provide information such as:
 - reputation information;
 - relationships with other indicators.
 
-![IOC enrichment](ioc-enrichment.png)
+
+<img width="1919" height="733" alt="image" src="https://github.com/user-attachments/assets/f6a95e73-c26a-46aa-8e08-a0b409504992" />
+
 
 *Figure 16. Additional information obtained during IOC enrichment.*
 

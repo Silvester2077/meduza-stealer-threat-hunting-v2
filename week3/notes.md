@@ -1,108 +1,173 @@
 # Week 3 — Data Processing and Exploitation
 
-## 3.1 Data Filtering
+## 3.1 Data Processing Overview
 
-After collecting the initial data, we performed filtering.
+During Week 3, we processed the indicators collected during Week 2.
 
-The purpose of filtering is to remove:
+The main goal of this stage was to make the collected data easier to analyze and identify possible relationships between different indicators.
 
-- duplicate indicators
-- incomplete values
-- irrelevant information
-- incorrectly formatted entries
+The processing workflow included four main steps:
 
-This makes the dataset easier to analyze.
+1. Data filtering
+2. Data normalization
+3. Data enrichment
+4. IOC correlation
 
-![Dataset before filtering](before-filtering.png)
+![Data processing workflow](data-processing-workflow.png)
 
-*Figure 12. Initial dataset before filtering.*
+*Figure 12. Data processing workflow used in the project.*
 
-![Dataset after filtering](after-filtering.png)
+---
 
-*Figure 13. Dataset after filtering.*
+## 3.2 Data Filtering
 
-## 3.2 Data Normalization
+The first step was filtering the collected indicators.
 
-The collected information may have different formats. Therefore, normalization is
-required before further analysis.
+The initial dataset may contain duplicate values, incomplete information, or indicators that are not directly related to the research topic.
 
-For example, domain names, IP addresses, hashes, and URLs should be stored in a
-consistent format.
+We removed duplicate entries and checked the collected values before continuing with the analysis.
 
-| Before | After |
+For example, if the same hash appeared more than once, it was kept only once in the processed dataset.
+
+![Data before filtering](data-before-filtering.png)
+
+*Figure 13. Initial IOC dataset before filtering.*
+
+![Data after filtering](data-after-filtering.png)
+
+*Figure 14. IOC dataset after filtering.*
+
+---
+
+## 3.3 Data Normalization
+
+After filtering, we normalized the indicators so that they had a consistent format.
+
+Normalization helps avoid problems caused by different formatting of the same type of data.
+
+For example:
+
+| Indicator type | Example format |
 |---|---|
-| Example.COM | example.com |
-| 192.168.1.1 | 192.168.1.1 |
-| Duplicate hash | Single hash entry |
+| SHA-256 | 64 hexadecimal characters |
+| IP address | IPv4 address format |
+| Domain | Lowercase domain name |
+| IP:Port | IP address followed by port |
 
-![Normalized dataset](normalized-dataset.png)
+We also removed unnecessary spaces and made the formatting consistent across the dataset.
 
-*Figure 14. Normalized IOC dataset.*
+![Data normalization](data-normalization.png)
 
-## 3.3 Data Enrichment
+*Figure 15. Normalized IOC dataset.*
 
-Data enrichment means adding additional information to the indicators that were
-collected previously.
+---
 
-For example, an IP address can be enriched with additional information such as:
+## 3.4 Data Enrichment
 
-- country
-- ASN
-- organization
-- reputation
-- related domains
+The next step was data enrichment.
 
-A file hash can be enriched with:
+Data enrichment means adding additional information to the indicators collected during the previous stage.
 
-- detection information
-- file type
-- file name
-- related URLs
-- malware classification
+For example, a file hash can be checked against a malware analysis or threat intelligence service to obtain additional information.
+
+An IP address can also be investigated to identify related infrastructure or other available information.
+
+For our Meduza Stealer project, enrichment can provide information such as:
+
+- malware detection results;
+- file information;
+- related domains;
+- related IP addresses;
+- URLs;
+- reputation information;
+- relationships with other indicators.
 
 ![IOC enrichment](ioc-enrichment.png)
 
-*Figure 15. Enrichment information for a collected IOC.*
+*Figure 16. Additional information obtained during IOC enrichment.*
 
-## 3.4 IOC Correlation
+---
 
-After filtering, normalization, and enrichment, we can compare the indicators to
-identify possible relationships.
+## 3.5 IOC Correlation
 
-```
+After filtering, normalization, and enrichment, we correlated the collected indicators.
+
+Correlation means looking for relationships between different indicators.
+
+For example, one malware sample may be connected to a specific hash, domain, IP address, or URL.
+
+The following structure shows the basic relationship we investigated:
+
+```text
+Meduza Stealer
+      |
+      ↓
 Malware Sample
       |
-      | SHA-256
       ↓
-   File Hash
+File Hash
       |
       ↓
- VirusTotal
+Related Infrastructure
       |
- ┌────┴─────┐
- ↓          ↓
-Domain      IP
- ↓          ↓
-URL       Infrastructure
-```
+   ┌──┴───┐
+   ↓      ↓
+Domain   IP Address
+   |
+   ↓
+  URL
 
-The purpose of correlation is to understand how different indicators may be connected.
+This approach helps us understand how different indicators can be connected within the same threat intelligence investigation.
 
-![IOC correlation](ioc-correlation.png)
+Figure 17. Correlation between different IOC types.
 
-*Figure 16. Relationship between collected indicators.*
+3.6 Processed IOC Dataset
 
-## 3.5 Processed IOC Dataset
+After processing the collected information, we organized the indicators into a structured dataset.
 
-After processing, the dataset can be represented in the following structure:
+IOC	Type	Source	Filtered	Normalized	Enriched
+8844D41002892739EE42DB2B481E67D6EDBAAA0A9B9DF5E314C2C083F2900BEE	SHA-256	Any.Run	Yes	Yes	Yes
+62.60.244.198:15666	IP:Port	ThreatFox	Yes	Yes	Yes
+[ADD DOMAIN]	Domain	[SOURCE]	Yes	Yes	Yes
+[ADD URL]	URL	[SOURCE]	Yes	Yes	Yes
 
-| IOC | Type | Source | Normalized | Enriched | Related IOC |
-|---|---|---|---|---|---|
-| 8844D41...F2900BEE | Hash | any.run | Yes | Yes | [ADD] |
-| 62.60.244.198:15666 | IP:Port | ThreatFox | Yes | Yes | [ADD] |
-| [ADD VALUE] | Domain | OSINT | Yes | Yes | [ADD] |
-| [ADD VALUE] | URL | [SOURCE] | Yes | Yes | [ADD] |
+The processed dataset provides a cleaner structure for further threat hunting analysis.
 
-![Final processed dataset](final-dataset.png)
+Figure 18. Final processed IOC dataset.
 
-*Figure 17. Final processed IOC dataset.*
+3.7 Results
+
+The Week 3 processing stage allowed us to transform the initial IOC collection into a more structured dataset.
+
+The main results were:
+
+duplicate and irrelevant values were filtered;
+indicators were normalized into consistent formats;
+additional information was added through enrichment;
+relationships between different IOC types were investigated.
+
+The resulting workflow can be summarized as:
+
+Initial IOC Collection
+        ↓
+Data Filtering
+        ↓
+Data Normalization
+        ↓
+Data Enrichment
+        ↓
+IOC Correlation
+        ↓
+Processed Threat Intelligence
+
+Figure 19. Summary of the Week 3 processing results.
+
+3.8 Conclusion
+
+During Week 3, we applied data processing techniques to the indicators collected during Week 2.
+
+Filtering helped us remove unnecessary or duplicate information. Normalization made the indicators consistent, while enrichment added additional context to the collected data.
+
+Finally, IOC correlation helped us investigate possible relationships between hashes, domains, IP addresses, and URLs.
+
+These steps prepared the collected threat intelligence for further threat hunting analysis.

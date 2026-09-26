@@ -62,7 +62,8 @@ addresses, URLs, and other artifacts.
 For our Meduza Stealer project, technical intelligence is particularly useful because
 our research requires working with concrete indicators.
 
-![Types of CTI](cti-types.png)
+<img width="643" height="800" alt="image" src="https://github.com/user-attachments/assets/862739e9-f09d-4431-9199-c5f5a2d3d604" />
+
 
 *Figure 3. Classification of Cyber Threat Intelligence.*
 

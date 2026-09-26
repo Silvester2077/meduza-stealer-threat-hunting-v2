@@ -40,7 +40,8 @@ publications can be used to understand malware, attacks, and defensive technique
 For our project, SANS resources can be used as a supporting source when researching
 the threat intelligence concepts and malware-related information.
 
-![SANS resource](sans-resource.png)
+<img width="1687" height="435" alt="image" src="https://github.com/user-attachments/assets/f39a40e3-7db8-4949-afaf-224b03186d24" />
+
 
 *Figure 7. SANS resource used during the research.*
 

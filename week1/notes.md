@@ -38,7 +38,8 @@ During Week 1, we created a small glossary of important Cyber Threat Intelligenc
 | **Hash** | A value used to identify a file or other digital object. |
 | **C2** | Command and Control infrastructure used for communication with compromised systems. |
 
-![CTI glossary source](cti-glossary-source.png)
+<img width="1575" height="857" alt="image" src="https://github.com/user-attachments/assets/a6e7a2cc-b85a-43d2-8d56-ddfdc4be7fc3" />
+
 
 *Figure 2. Source used to study CTI terminology.*
 

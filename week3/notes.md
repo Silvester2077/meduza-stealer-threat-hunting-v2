@@ -29,7 +29,8 @@ We removed duplicate entries and checked the collected values before continuing 
 
 For example, if the same hash appeared more than once, it was kept only once in the processed dataset.
 
-![Data before filtering](data-before-filtering.png)
+<img width="1093" height="276" alt="image" src="https://github.com/user-attachments/assets/788cf40a-c07d-4503-9afd-29395accc278" />
+
 
 *Figure 13. Initial IOC dataset before filtering.*
 

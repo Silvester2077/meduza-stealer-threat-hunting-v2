@@ -77,7 +77,8 @@ It can help organize indicators and connect related pieces of information.
 For our project, MISP is relevant because it demonstrates how indicators can be
 structured and correlated as part of a threat intelligence workflow.
 
-![MISP interface](misp-interface.png)
+<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/97d20521-78b2-4c40-88a5-056314985589" />
+
 
 *Figure 9. MISP interface or relevant threat intelligence data.*
 

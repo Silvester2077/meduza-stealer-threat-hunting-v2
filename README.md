@@ -98,7 +98,7 @@ to a specific malware-related research topic.
 5. Results + next steps (Cyber Kill Chain mapping, Week 4) (30s)
 
 
-   ## AI Usage Disclosure
+## AI Usage Disclosure
 
 Generative AI tools (ChatGPT / Claude) were used throughout the project 
 as a brainstorming and idea-generation aid. All final text, diagrams, 

@@ -96,3 +96,10 @@ to a specific malware-related research topic.
 3. Week 2 — OSINT tools used + what we found (2.5 min, show VirusTotal/MISP screenshots)
 4. Week 3 — Filtering/normalization/enrichment/correlation (2.5 min, show before/after)
 5. Results + next steps (Cyber Kill Chain mapping, Week 4) (30s)
+
+
+   ## AI Usage Disclosure
+
+Generative AI tools (ChatGPT / Claude) were used throughout the project 
+as a brainstorming and idea-generation aid. All final text, diagrams, 
+and analysis were written and produced by the team.

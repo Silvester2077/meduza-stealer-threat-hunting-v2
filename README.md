@@ -79,7 +79,7 @@ to a specific malware-related research topic.
 - MISP.
 - Public threat intelligence and security research related to Meduza Stealer
   (Wazuh, SOC Prime, Security Affairs, ThreatFox/abuse.ch, any.run).
-- Project GitHub repository: Silvester2077/meduza-stealer-threat-hunting
+- Project GitHub repository: Silvester2077/meduza-stealer-threat-hunting-v2
 
 ## Weekly Commit Log
 

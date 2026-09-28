@@ -122,8 +122,9 @@ Domain   IP Address
   URL
 
 This approach helps us understand how different indicators can be connected within the same threat intelligence investigation.
+<img width="1632" height="860" alt="image" src="https://github.com/user-attachments/assets/a4cf9f5c-44d1-4d8c-9cfb-3c6d5407a546" />
 
-Figure 17. Correlation between different IOC types.
+*Figure 17. Passive DNS relationships associated with the collected IP address.*
 
 3.6 Processed IOC Dataset
 

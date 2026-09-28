@@ -122,9 +122,11 @@ Domain   IP Address
    |
    ↓
   URL
+```
 
 This approach helps us understand how different indicators can be connected within the same threat intelligence investigation.
 
+<img width="1766" height="861" alt="image" src="https://github.com/user-attachments/assets/40a34040-8c5d-4355-b894-28fca8c1b159" />
 
 *Figure 17. Passive DNS relationships associated with the collected IP address.*
 

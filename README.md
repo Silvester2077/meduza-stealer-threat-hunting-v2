@@ -100,6 +100,6 @@ to a specific malware-related research topic.
 
 ## AI Usage Disclosure
 
-Generative AI tools (ChatGPT / Claude) were used throughout the project 
+Generative AI tools (ChatGPT - 5.0/ Claude - Sonnet 5) were used throughout the project 
 as a brainstorming and idea-generation aid. All final text, diagrams, 
 and analysis were written and produced by the team.

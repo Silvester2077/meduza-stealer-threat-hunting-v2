@@ -169,6 +169,8 @@ IOC Correlation
         ↓
 Processed Threat Intelligence
 
+<img width="714" height="791" alt="image" src="https://github.com/user-attachments/assets/464a0f47-c433-4e7d-b2b6-5a64131b1314" />
+
 Figure 19. Summary of the Week 3 processing results.
 
 ## 3.8 Conclusion

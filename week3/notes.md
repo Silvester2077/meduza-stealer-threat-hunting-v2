@@ -90,6 +90,7 @@ For our Meduza Stealer project, enrichment can provide information such as:
 
 *Figure 16. Additional information obtained during IOC enrichment.*
 
+
 ---
 
 ## 3.5 IOC Correlation
@@ -99,6 +100,8 @@ After filtering, normalization, and enrichment, we correlated the collected indi
 Correlation means looking for relationships between different indicators.
 
 For example, one malware sample may be connected to a specific hash, domain, IP address, or URL.
+
+The following structure shows the basic relationship we investigated:
 
 The following structure shows the basic relationship we investigated:
 
@@ -113,7 +116,6 @@ File Hash
       |
       ↓
 Related Infrastructure
-      |
    ┌──┴───┐
    ↓      ↓
 Domain   IP Address
@@ -122,7 +124,7 @@ Domain   IP Address
   URL
 
 This approach helps us understand how different indicators can be connected within the same threat intelligence investigation.
-<img width="1771" height="849" alt="image" src="https://github.com/user-attachments/assets/c4b6c6e6-a04f-464e-9d02-291556b68297" />
+
 
 *Figure 17. Passive DNS relationships associated with the collected IP address.*
 

@@ -113,9 +113,6 @@ The initial dataset can contain several IOC types:
 | SHA-256 | 8844D41002892739EE42DB2B481E67D6EDBAAA0A9B9DF5E314C2C083F2900BEE | any.run | File indicator |
 | IP:Port | 62.60.244.198:15666 | ThreatFox (abuse.ch) | Infrastructure indicator (C2) |
 
-*Values above marked `[ADD ...]` still need to be filled in with indicators found
-during our own OSINT session; the hash and IP were taken from public reporting as a
-starting reference point.*
 
 <img width="1620" height="683" alt="image" src="https://github.com/user-attachments/assets/75198e33-21f0-480f-9e61-fcac43ef99dc" />
 

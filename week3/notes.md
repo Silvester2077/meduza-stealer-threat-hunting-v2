@@ -130,7 +130,7 @@ This approach helps us understand how different indicators can be connected with
 
 *Figure 17. Passive DNS relationships associated with the collected IP address.*
 
-3.6 Processed IOC Dataset
+## 3.6 Processed IOC Dataset
 
 After processing the collected information, we organized the indicators into a structured dataset.
 
@@ -144,7 +144,7 @@ The processed dataset provides a cleaner structure for further threat hunting an
 
 Figure 18. Final processed IOC dataset.
 
-3.7 Results
+## 3.7 Results
 
 The Week 3 processing stage allowed us to transform the initial IOC collection into a more structured dataset.
 
@@ -171,7 +171,7 @@ Processed Threat Intelligence
 
 Figure 19. Summary of the Week 3 processing results.
 
-3.8 Conclusion
+## 3.8 Conclusion
 
 During Week 3, we applied data processing techniques to the indicators collected during Week 2.
 

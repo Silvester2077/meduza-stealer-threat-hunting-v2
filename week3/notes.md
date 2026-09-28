@@ -129,11 +129,11 @@ Figure 17. Correlation between different IOC types.
 
 After processing the collected information, we organized the indicators into a structured dataset.
 
-IOC	Type	Source	Filtered	Normalized	Enriched
-8844D41002892739EE42DB2B481E67D6EDBAAA0A9B9DF5E314C2C083F2900BEE	SHA-256	Any.Run	Yes	Yes	Yes
-62.60.244.198:15666	IP:Port	ThreatFox	Yes	Yes	Yes
-[ADD DOMAIN]	Domain	[SOURCE]	Yes	Yes	Yes
-[ADD URL]	URL	[SOURCE]	Yes	Yes	Yes
+| IOC                                                              | Type    | Source    | Filtered | Normalized | Enriched |
+| ---------------------------------------------------------------- | ------- | --------- | -------- | ---------- | -------- |
+| 8844D41002892739EE42DB2B481E67D6EDBAAA0A9B9DF5E314C2C083F2900BEE | SHA-256 | Any.Run   | Yes      | Yes        | Yes      |
+| 62.60.244.198:15666                                              | IP:Port | ThreatFox | Yes      | Yes        | Yes      |
+
 
 The processed dataset provides a cleaner structure for further threat hunting analysis.
 

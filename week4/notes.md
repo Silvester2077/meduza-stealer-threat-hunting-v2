@@ -33,7 +33,8 @@ The model contains seven stages:
 
 For this week, we applied the Cyber Kill Chain model to Meduza Stealer activity. The goal was to understand how different parts of a malware attack can be organized into separate stages.
 
-![Cyber Kill Chain](cyber-kill-chain.png)
+<img width="608" height="821" alt="image" src="https://github.com/user-attachments/assets/5177aad2-4e7f-4ce4-9a3c-29a0714ec857" />
+
 
 *Figure 20. The seven stages of the Cyber Kill Chain.*
 **Source:** Lockheed Martin — [The Cyber Kill Chain](https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html)

@@ -110,7 +110,7 @@ For an information stealer, this happens when the victim executes the malicious 
 
 Installation is the stage where malware becomes active on the compromised system.
 
-During the sandbox session, the Meduza Stealer executable was dropped and executed after the sample started. `[add here any specific detail visible in Figure 21, e.g. file path, registry key, or autorun entry, if the sandbox report shows one]`
+During the sandbox session, the Meduza Stealer executable was dropped and executed after the sample started. 
 
 Without a confirmed persistence mechanism (such as a registry run key or scheduled task) in our available evidence, we cannot confirm whether the malware was designed to survive a reboot, only that it became active during the session.
 

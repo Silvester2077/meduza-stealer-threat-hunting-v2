@@ -96,10 +96,11 @@ For an information stealer, this happens when the victim executes the malicious 
 
 **Evidence:** Sandbox analysis of the Meduza Stealer sample.
 
-![Meduza Stealer sandbox](meduza-info.png)
+<img width="1404" height="716" alt="image" src="https://github.com/user-attachments/assets/09aa27f5-b0b1-4e25-a245-998d8351915d" />
+
 
 *Figure 21. Meduza Stealer sample and information from the sandbox analysis.*
-**Source:** ANY.RUN — [https://any.run/](https://any.run/)
+**Source:** ANY.RUN — https://any.run/report/8844d41002892739ee42db2b481e67d6edbaaa0a9b9df5e314c2c083f2900bee/01484317-5819-4bc1-8cdf-5e2a63da9dac
 
 **Status:** Observed in the sandbox analysis.
 

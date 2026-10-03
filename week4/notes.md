@@ -138,10 +138,11 @@ The IP address was investigated using threat intelligence sources.
 
 The IP address was also investigated using Passive DNS information to identify related domains.
 
-![IOC correlation](ioc-correlation.png)
+<img width="1069" height="777" alt="image" src="https://github.com/user-attachments/assets/a68b2cd2-508c-4bb0-a6f8-175a1c74b7e6" />
+
 
 *Figure 23. Passive DNS relationships associated with the collected IP address.*
-**Source:** VirusTotal — [https://www.virustotal.com/](https://www.virustotal.com/)
+**Source:** VirusTotal — https://www.virustotal.com/gui/ip-address/62.60.244.198/relations
 
 **Status:** The IP and related infrastructure were investigated as possible threat intelligence indicators. The available evidence should not be interpreted as proof that every related domain belongs to Meduza Stealer.
 

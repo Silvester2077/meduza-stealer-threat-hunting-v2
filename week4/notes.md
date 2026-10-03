@@ -129,10 +129,12 @@ During the investigation, we identified an IP address and port:
 
 The IP address was investigated using threat intelligence sources.
 
-![IOC enrichment](ioc-enrichment.png)
+<img width="1074" height="407" alt="image" src="https://github.com/user-attachments/assets/c8869498-2341-4d74-8d07-4ca777a789c7" />
+<img width="1769" height="250" alt="image" src="https://github.com/user-attachments/assets/cbc315b6-4c2f-4b23-90c3-776918f7fcb4" />
+
 
 *Figure 22. Additional information obtained for the collected IP address.*
-**Source:** VirusTotal — [https://www.virustotal.com/](https://www.virustotal.com/)
+**Source:** VirusTotal — https://www.virustotal.com/gui/ip-address/62.60.244.198/detection
 
 The IP address was also investigated using Passive DNS information to identify related domains.
 

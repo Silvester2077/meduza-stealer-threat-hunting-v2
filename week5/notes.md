@@ -159,9 +159,10 @@ Compare the events using the available fields, such as computer name, process id
 
 ### Screenshot for the queries
 
-![Hunt query in Splunk or Kibana](hunt-query.png)
+<img width="1283" height="776" alt="image" src="https://github.com/user-attachments/assets/477722a0-a82a-40d5-a5d8-0118a3099aa3" />
 
-*Figure 27. Example of a threat hunting query prepared or executed in the team's analysis environment.*
+
+*Figure 27. Example of a hunt query in the Splunk Search app.*
 
 **Figure 27 source links:**
 - [Splunk Search Tutorial](https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial)

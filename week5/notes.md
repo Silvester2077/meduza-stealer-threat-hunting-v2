@@ -231,10 +231,10 @@ This work provides a basis for more detailed investigation using MITRE ATT&CK in
 
 ## References
 
-1. [SANS — The Who, What, Where, When, Why and How of Effective Threat Hunting](https://www.sans.org/white-papers/who-what-where-when-why-how-effective-threat-hunting)
-2. [Microsoft — Conduct end-to-end proactive threat hunting](https://learn.microsoft.com/azure/sentinel/hunts)
-3. [Microsoft — The art and science of threat hunting](https://www.microsoft.com/en-us/security/blog/2022/09/08/part-1-the-art-and-science-of-threat-hunting/)
-4. [MITRE ATT&CK](https://attack.mitre.org/)
-5. [Splunk Search Tutorial](https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial)
-6. [Elastic — Kibana Query Language](https://www.elastic.co/guide/en/kibana/current/kuery-query.html)
+1. [SANS — The Who, What, Where, When, Why and How of Effective Threat Hunting](https://www.sans.org/white-papers/who-what-where-when-why-how-effective-threat-hunting) (Figure 25)
+2. [Microsoft Sentinel — Conduct end-to-end proactive threat hunting](https://learn.microsoft.com/en-us/azure/sentinel/hunts) (Figure 25)
+3. [ServQual — Threat Hunting with MITRE ATT&CK Mapping](https://srql.com/knowledge/threat-hunting-mitre-attack-mapping/) (Figure 26)
+4. [Splunk Security Content — Windows Credentials from Password Stores Chrome Login Data Access](https://research.splunk.com/endpoint/0d32ba37-80fc-4429-809c-0ba15801aeaf/) (Figure 27)
+5. [Splunk Threat Research Team — Meduza Stealer Analysis: A Closer Look at its Techniques and Attack Vector](https://www.splunk.com/en_us/blog/security/meduza-stealer-analysis.html), Figure 20 (Figure 28)
+6. [MITRE ATT&CK](https://attack.mitre.org/) (technique references in 5.3 and 5.6)
 

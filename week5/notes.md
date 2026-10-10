@@ -34,8 +34,7 @@ For our project, we use both approaches. The indicators collected in Weeks 2–3
 *Figure 25. Comparison of intel-driven and hypothesis-driven threat hunting.*
 
 **Figure 25 source links:**
-- [SANS — The Who, What, Where, When, Why and How of Effective Threat Hunting](https://www.sans.org/white-papers/who-what-where-when-why-how-effective-threat-hunting)
-- [Microsoft — Conduct end-to-end proactive threat hunting](https://learn.microsoft.com/azure/sentinel/hunts)
+- https://www.paloaltonetworks.com/cyberpedia/threat-hunting#methodologies
 
 *Note: Figure 25 is a team-created diagram based on these references, not an image copied from either website.*
 

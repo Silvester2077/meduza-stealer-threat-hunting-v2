@@ -66,7 +66,7 @@ The scenario describes behavior to investigate; it does not claim that these act
 <img width="914" height="749" alt="image" src="https://github.com/user-attachments/assets/2e01d6d9-0119-48e2-9bc6-9edddc1b0117" />
 
 
-*Figure 26. Threat hunting workflow designed for the Meduza Stealer investigation.*
+*Figure 26. Threat hunting workflow.*
 
 **Figure 26 source links:**
 - https://srql.com/knowledge/threat-hunting-mitre-attack-mapping/

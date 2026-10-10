@@ -56,21 +56,20 @@ The scenario describes behavior to investigate; it does not claim that these act
 
 ### Hunting workflow
 
-1. Define the hypothesis.
-2. Select the required data sources.
-3. Run the hunt queries.
-4. Review the results and investigate suspicious events.
-5. Confirm, reject, or leave the hypothesis unresolved if the evidence is insufficient.
-6. Document findings and identify possible detection improvements.
+1. Build the hypothesis.
+2. Map the hypothesis to MITRE ATT&CK techniques.
+3. Collect the required telemetry.
+4. Hunt and investigate: run the hunt queries, review the results, and confirm, reject, or leave the hypothesis unresolved if the evidence is insufficient.
+5. Document the findings.
+6. Improve detections.
 
-![Threat hunting workflow](hunting-workflow.png)
+<img width="914" height="749" alt="image" src="https://github.com/user-attachments/assets/2e01d6d9-0119-48e2-9bc6-9edddc1b0117" />
+
 
 *Figure 26. Threat hunting workflow designed for the Meduza Stealer investigation.*
 
 **Figure 26 source links:**
-- [Microsoft — Conduct end-to-end proactive threat hunting](https://learn.microsoft.com/azure/sentinel/hunts)
-- [Microsoft — The art and science of threat hunting](https://www.microsoft.com/en-us/security/blog/2022/09/08/part-1-the-art-and-science-of-threat-hunting/)
-
+- https://srql.com/knowledge/threat-hunting-mitre-attack-mapping/
 *Note: Figure 26 is a team-created workflow based on the references above.*
 
 ## 5.4 Hunt Queries

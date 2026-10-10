@@ -70,7 +70,6 @@ The scenario describes behavior to investigate; it does not claim that these act
 
 **Figure 26 source links:**
 - https://srql.com/knowledge/threat-hunting-mitre-attack-mapping/
-*Note: Figure 26 is a team-created workflow based on the references above.*
 
 ## 5.4 Hunt Queries
 

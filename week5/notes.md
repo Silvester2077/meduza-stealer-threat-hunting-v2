@@ -162,16 +162,15 @@ Compare the events using the available fields, such as computer name, process id
 <img width="1283" height="776" alt="image" src="https://github.com/user-attachments/assets/477722a0-a82a-40d5-a5d8-0118a3099aa3" />
 
 
-*Figure 27. Example of a Splunk search query for detecting suspicious access to Chrome browser credential data.*
+*Figure 27. Published Splunk detection for non-browser access to Chrome "Login Data" (Windows Security Event ID 4663), corresponding to our Hunt 4.*
 
 **Figure 27 source links:**
 - https://research.splunk.com/endpoint/0d32ba37-80fc-4429-809c-0ba15801aeaf/
 
-*Screenshot note: Capture the actual query in your Splunk or Kibana interface. If the query was only prepared in the report and has not been executed, label the screenshot as a query example, not as an executed hunt.*
 
 ## 5.5 Hunt Results
 
-Results must be completed after the queries have been run against available lab telemetry. Do not enter assumed matches or conclusions.
+The results below will be recorded after the queries are run against available lab telemetry. Until then, each hunt is marked as pending, and no matches or conclusions are assumed.
 
 | Hunt | Query | Required data source | Result | Conclusion |
 |---|---|---|---|---|
@@ -181,7 +180,7 @@ Results must be completed after the queries have been run against available lab 
 | 4 | Access to browser credential files | Windows Security Event ID 4663 | To be recorded after execution | Investigate unexpected file access |
 | 5 | File access and network correlation | Sysmon and Windows Security logs | To be recorded after execution | Requires reliable process and time correlation |
 
-If the query returns no matching events, record **"No matching events in the available dataset"**. Do not conclude that the system is clean: the relevant activity may not have occurred, or the required telemetry may be missing.
+If a query returns no matching events, the result will be recorded as "No matching events in the available dataset". This does not mean the system is clean: the relevant activity may not have occurred, or the required telemetry may be missing.
 
 ### Screenshot of the results
 
@@ -190,6 +189,8 @@ If the query returns no matching events, record **"No matching events in the ava
 
 
 *Figure 28. Example result of the published Splunk detection "Windows Credentials from Password Stores Chrome Login Data Access" in a Splunk Attack Range lab, where a simulated Meduza Stealer payload (`C:\Temp\meduza_payload.exe`) accesses the Chrome "Login Data" file*
+
+This published example illustrates the type of evidence our Hunt 4 is designed to find: a non-browser process, here running from a Temp folder (related to Hunt 3), accessing the Chrome "Login Data" file, recorded in Windows Security Event ID 4663.
 
 **Figure 28 source:** 
 - https://www.splunk.com/en_us/blog/security/meduza-stealer-analysis.html

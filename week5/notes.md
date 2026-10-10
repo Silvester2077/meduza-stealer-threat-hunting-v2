@@ -185,11 +185,13 @@ If the query returns no matching events, record **"No matching events in the ava
 
 ### Screenshot of the results
 
-![Threat hunting query results](hunt-results.png)
+<img width="954" height="497" alt="image" src="https://github.com/user-attachments/assets/ae22cb6f-1661-4f95-b1bc-9be22390352a" />
 
-*Figure 28. Results of a threat hunting query in the team's analysis environment.*
 
-**Figure 28 source:** The team's own Splunk or Kibana environment. There is no public URL for a private or local lab dashboard. Include the actual dashboard URL only if it is accessible and appropriate to share; otherwise, document the platform and capture the result screen.
+*Figure 28. Example result of the published Splunk detection "Windows Credentials from Password Stores Chrome Login Data Access" in a Splunk Attack Range lab, where a simulated Meduza Stealer payload (`C:\Temp\meduza_payload.exe`) accesses the Chrome "Login Data" file*
+
+**Figure 28 source:** 
+- https://www.splunk.com/en_us/blog/security/meduza-stealer-analysis.html
 
 The screenshot should show the executed query and its actual result, including a zero-result response if no events matched. Do not create a simulated result and present it as real telemetry.
 

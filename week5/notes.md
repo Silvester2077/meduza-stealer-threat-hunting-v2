@@ -110,6 +110,8 @@ winlog.event_id: 3 and
 destination.ip: "62.60.244.198" and
 destination.port: 15666
 ```
+**Source:** Team-created query based on the IOC collected from
+[ThreatFox — Meduza Stealer](https://threatfox.abuse.ch/browse/tag/Meduza%20Stealer/).
 
 These queries look for network connection events involving the investigated IP address and port. The IP is an indicator collected from public threat intelligence sources; its presence in the dataset does not prove that a lab endpoint is infected.
 

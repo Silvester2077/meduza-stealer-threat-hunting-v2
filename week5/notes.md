@@ -27,7 +27,8 @@ Intel-driven hunting can quickly find known indicators, but it may miss modified
 
 For our project, we use both approaches. The indicators collected in Weeks 2–3 support intel-driven hunting, while the behavior investigated in Week 4 provides a basis for a hypothesis-driven hunt.
 
-![Threat hunting models](threat-hunting-models.png)
+<img width="721" height="414" alt="image" src="https://github.com/user-attachments/assets/7f757772-2525-4806-b03f-965a7f24c2dd" />
+
 
 *Figure 25. Comparison of intel-driven and hypothesis-driven threat hunting.*
 

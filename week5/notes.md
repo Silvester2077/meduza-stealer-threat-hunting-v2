@@ -29,7 +29,7 @@ For our project, we use both approaches. The indicators collected in Weeks 2–3
 
 <img width="721" height="414" alt="image" src="https://github.com/user-attachments/assets/7f757772-2525-4806-b03f-965a7f24c2dd" />
 
->  **Note on AI use:** The diagram in Figure 25 was generated with the help of an AI tool (Claude) to visualize our own comparison of the two hunting models. The content (models, steps) was determined by the team; the AI was used only to render it as a visual diagram.
+>  **Note on AI use:** The diagram in Figure 25 was generated with the help of an AI tool (Claude) to visualize our own comparison of the two hunting models.
 
 *Figure 25. Comparison of intel-driven and hypothesis-driven threat hunting.*
 

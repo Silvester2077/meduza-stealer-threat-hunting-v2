@@ -238,4 +238,3 @@ This work provides a basis for more detailed investigation using MITRE ATT&CK in
 5. [Splunk Search Tutorial](https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial)
 6. [Elastic — Kibana Query Language](https://www.elastic.co/guide/en/kibana/current/kuery-query.html)
 
-**Project evidence:** Query screenshots and hunt results should be captured from the team's actual lab environment. Any conclusions about detections must be based on the recorded evidence.

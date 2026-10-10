@@ -185,7 +185,8 @@ If the query returns no matching events, record **"No matching events in the ava
 
 ### Screenshot of the results
 
-<img width="954" height="497" alt="image" src="https://github.com/user-attachments/assets/ae22cb6f-1661-4f95-b1bc-9be22390352a" />
+<img width="1168" height="291" alt="image" src="https://github.com/user-attachments/assets/d7023648-37b0-4bb8-baf6-2e48a27765e5" />
+
 
 
 *Figure 28. Example result of the published Splunk detection "Windows Credentials from Password Stores Chrome Login Data Access" in a Splunk Attack Range lab, where a simulated Meduza Stealer payload (`C:\Temp\meduza_payload.exe`) accesses the Chrome "Login Data" file*

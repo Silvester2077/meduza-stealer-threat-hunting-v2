@@ -194,7 +194,6 @@ If the query returns no matching events, record **"No matching events in the ava
 **Figure 28 source:** 
 - https://www.splunk.com/en_us/blog/security/meduza-stealer-analysis.html
 
-The screenshot should show the executed query and its actual result, including a zero-result response if no events matched. Do not create a simulated result and present it as real telemetry.
 
 ## 5.6 Detection Improvement
 

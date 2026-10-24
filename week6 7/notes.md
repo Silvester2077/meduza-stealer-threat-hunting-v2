@@ -57,21 +57,13 @@ We do **not** run Meduza Stealer. We emulate selected *behaviors* with harmless 
 - Splunk runs on a separate Linux VM. Sysmon events were exported from Windows to CSV with PowerShell (`Get-WinEvent`) and uploaded through the Splunk web interface (Settings → Add Data → Upload) into the index `sysmon`.
 - Script: [`meduza_behavior_sim.ps1`](./meduza_behavior_sim.ps1), run with `powershell -ExecutionPolicy Bypass -File .\meduza_behavior_sim.ps1`.
 
-![Sysmon installation](images/01-sysmon-install.png)
-
-*Figure 29. Sysmon installed with the SwiftOnSecurity configuration (PowerShell output).*
-
 ![Sysmon Operational log](images/02-event-viewer.png)
 
-*Figure 30. Event Viewer, Microsoft-Windows-Sysmon/Operational: Sysmon is logging events.*
-
-![CSV upload in Splunk](images/04-upload.png)
-
-*Figure 31. Splunk, Settings → Add Data → Upload: the exported CSV is selected.*
+*Figure 29. Event Viewer, Microsoft-Windows-Sysmon/Operational: the Sysmon log is working and collecting events.*
 
 ![Upload success](images/05-upload-success.png)
 
-*Figure 32. Splunk confirms the file was uploaded successfully into the index `sysmon`.*
+*Figure 30. Splunk confirms the CSV file was uploaded successfully (Add Data → Upload).*
 
 | Step | Emulated behavior | Harmless emulation | ATT&CK technique | Expected telemetry |
 |---|---|---|---|---|
@@ -92,18 +84,26 @@ We do **not** run Meduza Stealer. We emulate selected *behaviors* with harmless 
 
 | Step | Ran? | Event found in Splunk? | Event ID | Notes |
 |---|---|---|---|---|
-| S1 | Yes | TODO | 1 | |
-| S2 | Yes | TODO | n/a | |
-| S3 | Yes | TODO | 1 | |
-| S4 | Yes | TODO | 22 | |
-| S5 | Yes | **Yes** | 1 | `ParentImage` = `powershell.exe`, `Image` = `cmd.exe`, command line contains `ping 127.0.0.1 -n 3` and `del /f /q ...\dummy.txt` |
+| S1 | Yes | Yes (indirect) | 1 | In the S5 event, `CurrentDirectory` is `...\Downloads\sim\` and `ParentCommandLine` is `powershell.exe -ExecutionPolicy Bypass -File .\meduza_behavior_sim.ps1`, so the script ran from a user-writable path |
+| S2 | Yes | No (none expected) | n/a | Script printed `Current region code: US`; only Sysmon EIDs 1, 3 and 22 were exported to Splunk |
+| S3 | Yes | TODO | 1 | Script printed `Installed software entries found: 401`; no dedicated Sysmon event identified yet |
+| S4 | Yes | **Yes** | 22 | `powershell.exe` resolved `api.ipify.org` (Figure 33) |
+| S5 | Yes | **Yes** | 1 | `ParentImage` = `powershell.exe`, `Image` = `cmd.exe`, command line contains `ping 127.0.0.1 -n 3` and `del /f /q ...\dummy.txt`; a separate `PING.EXE` process-creation event also exists (Figure 32) |
 | S6 | No | n/a | 4663 | Deliberately not run (safety) |
 
 ![Simulation output](images/03-simulation-output.png)
 
-*Figure 33. PowerShell output of the simulation script, steps [S1]...[S5].*
+*Figure 31. PowerShell output of the simulation script, steps [S1]...[S5] (user name redacted).*
 
-The S5 event as seen in Splunk is shown in Figure 35 (Week 7). TODO: add screenshots for S1-S4 if events were found.
+![PING.EXE process creation](images/08-ping-event.png)
+
+*Figure 32. Sysmon Process Create event (Event ID 1) for `PING.EXE` in Event Viewer, produced by the S5 command.*
+
+![DNS query for ipify](images/09-ipify-query.png)
+
+*Figure 33. Splunk: `index=sysmon ipify | where EventCode=22 | table _time Image QueryName` returns the S4 DNS query for `api.ipify.org` made by `powershell.exe`.*
+
+The S5 event as seen in Splunk is shown in Figure 35 (Week 7).
 
 ## 6.6 Mapping results to ATT&CK
 
@@ -204,14 +204,14 @@ Not run. Our lab has no 30-day baseline of `cmd.exe` parents, so every parent wo
 
 | Test | Action | Expected | Actual result |
 |---|---|---|---|
-| T1 | Run `meduza_behavior_sim.ps1` (step S5), then run the refinement query (All time) | `cmd.exe` with parent `powershell.exe` | **Observed: 1 event**, `ParentImage` = `...\WindowsPowerShell\v1.0\powershell.exe`, `Image` = `...\System32\cmd.exe`, `CommandLine` = `cmd.exe /c ping 127.0.0.1 -n 3 > nul & del /f /q "...\meduza_sim\dummy.txt"`, time 2026-10-24 07:16:18 |
+| T1 | Run `meduza_behavior_sim.ps1` (step S5), then run the refinement query (All time) | `cmd.exe` with parent `powershell.exe` | **Observed: 1 event**, `ParentImage` = `...\WindowsPowerShell\v1.0\powershell.exe`, `Image` = `...\System32\cmd.exe`, `CommandLine` = `cmd.exe /c ping 127.0.0.1 -n 3 > nul & del /f /q "...\meduza_sim\dummy.txt"`. See Figure 35 |
 | T2 | Open `cmd.exe` from the Start menu | Not returned (parent `explorer.exe`) | Not performed |
 | T3 | Run a harmless batch file from an installer-like tool | Possible false positive | Not performed |
 | T4 | Implementation B right after the simulation | Needs a baseline | Not performed (no baseline) |
 
 ![Event counts by EventCode](images/06-stats-eventcode.png)
 
-*Figure 34. `index=sysmon | stats count by EventCode` (All time): events of the types exported from Sysmon.*
+*Figure 34. `index=sysmon | stats count by EventCode` (All time): 305 events in total (EventCode 1: 83, EventCode 22: 77, EventCode 3: 145).*
 
 ![Refinement query result](images/07-query-result.png)
 
@@ -232,6 +232,7 @@ Combined detection idea: raise severity when (1) `cmd.exe` has an unusual parent
 
 - Logs were exported to CSV and uploaded in a batch. They were not forwarded in real time by a Splunk forwarder.
 - The result is a single event on a single lab host.
+- The Splunk `_time` of the uploaded events (07:16:18) differs from the Sysmon event time seen in Event Viewer for the same run (07:03:44 UTC), so `_time` appears to reflect the export or upload time. The `UtcTime` field holds the real event time.
 - Field filters in the base search did not work on the CSV data, so queries use `where` with `like()`. The cause was not investigated.
 - CAR-2013-02-003 rates its coverage of T1059.003 as moderate; it detects the shell launch, not every malicious use.
 - Legitimate software also launches `cmd.exe` from many parents, and `cmd /c` with ping and del occurs in legitimate scripts, so false positives are possible. The result is a hunting lead, not a verdict.

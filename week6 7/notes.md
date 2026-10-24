@@ -57,11 +57,13 @@ We do **not** run Meduza Stealer. We emulate selected *behaviors* with harmless 
 - Splunk runs on a separate Linux VM. Sysmon events were exported from Windows to CSV with PowerShell (`Get-WinEvent`) and uploaded through the Splunk web interface (Settings → Add Data → Upload) into the index `sysmon`.
 - Script: [`meduza_behavior_sim.ps1`](./meduza_behavior_sim.ps1), run with `powershell -ExecutionPolicy Bypass -File .\meduza_behavior_sim.ps1`.
 
-![Sysmon Operational log](images/02-event-viewer.png)
+<img width="965" height="672" alt="image" src="https://github.com/user-attachments/assets/d3f24d21-fa98-4755-885a-7d08b2b15747" />
+
 
 *Figure 29. Event Viewer, Microsoft-Windows-Sysmon/Operational: the Sysmon log is working and collecting events.*
 
-![Upload success](images/05-upload-success.png)
+<img width="1181" height="656" alt="image" src="https://github.com/user-attachments/assets/a865d993-512d-4602-a8ce-37c031e6b7b4" />
+
 
 *Figure 30. Splunk confirms the CSV file was uploaded successfully (Add Data → Upload).*
 
@@ -91,15 +93,17 @@ We do **not** run Meduza Stealer. We emulate selected *behaviors* with harmless 
 | S5 | Yes | **Yes** | 1 | `ParentImage` = `powershell.exe`, `Image` = `cmd.exe`, command line contains `ping 127.0.0.1 -n 3` and `del /f /q ...\dummy.txt`; a separate `PING.EXE` process-creation event also exists (Figure 32) |
 | S6 | No | n/a | 4663 | Deliberately not run (safety) |
 
-![Simulation output](images/03-simulation-output.png)
+<img width="1378" height="485" alt="image" src="https://github.com/user-attachments/assets/6fcf8d0f-8d19-40ae-a4e9-38db371267ac" />
+
 
 *Figure 31. PowerShell output of the simulation script, steps [S1]...[S5] (user name redacted).*
 
-![PING.EXE process creation](images/08-ping-event.png)
+<img width="707" height="187" alt="image" src="https://github.com/user-attachments/assets/2a75c0b1-613a-4fbb-b9fa-a38f0abd234d" />
+
 
 *Figure 32. Sysmon Process Create event (Event ID 1) for `PING.EXE` in Event Viewer, produced by the S5 command.*
 
-![DNS query for ipify](images/09-ipify-query.png)
+<img width="1542" height="287" alt="image" src="https://github.com/user-attachments/assets/c73f4783-6473-41fd-999e-387f97716af3" />
 
 *Figure 33. Splunk: `index=sysmon ipify | where EventCode=22 | table _time Image QueryName` returns the S4 DNS query for `api.ipify.org` made by `powershell.exe`.*
 
@@ -209,11 +213,13 @@ Not run. Our lab has no 30-day baseline of `cmd.exe` parents, so every parent wo
 | T3 | Run a harmless batch file from an installer-like tool | Possible false positive | Not performed |
 | T4 | Implementation B right after the simulation | Needs a baseline | Not performed (no baseline) |
 
-![Event counts by EventCode](images/06-stats-eventcode.png)
+<img width="1541" height="310" alt="image" src="https://github.com/user-attachments/assets/2c2dd4f4-c740-4742-abc8-cdd7192722bf" />
+
 
 *Figure 34. `index=sysmon | stats count by EventCode` (All time): 305 events in total (EventCode 1: 83, EventCode 22: 77, EventCode 3: 145).*
 
-![Refinement query result](images/07-query-result.png)
+<img width="1550" height="293" alt="image" src="https://github.com/user-attachments/assets/c38523d4-e96c-45e7-a804-0a61695113c8" />
+
 
 *Figure 35. Splunk result for the refinement query: `powershell.exe` → `cmd.exe` with `ping` and `del` in the command line (user name redacted).*
 

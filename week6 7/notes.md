@@ -125,14 +125,12 @@ The S5 event as seen in Splunk is shown in Figure 35 (Week 7).
 | Encrypted configuration / C2 traffic | Command and Control | T1573 Encrypted Channel | Splunk article |
 | Data sent to C2 | Exfiltration | T1041 Exfiltration Over C2 Channel | Splunk article |
 
-*Verify all technique IDs on attack.mitre.org before submission.*
 
 ## 6.7 Limitations (Week 6)
 
 - The simulation reproduces **behaviors**, not the real malware. It validates telemetry and mapping, not detection of real Meduza samples.
 - Technique mappings taken from the Splunk article are the authors' analysis; we did not reverse-engineer the malware ourselves.
 - T1070.004 is a possible mapping only.
-- Results depend on the Sysmon configuration in our VM.
 
 ---
 
@@ -159,7 +157,6 @@ An analytic explains *what behavior to look for and why*. A detection is what we
 | **CAR data model** | `process / create / exe` |
 | **Hypothesis (CAR)** | `cmd.exe` is normally started by `explorer.exe` or another command prompt. Other parents may indicate malice (e.g. a document reader or mail client launching a shell). |
 
-*Verify the analytic IDs and coverage level on car.mitre.org before submission.*
 
 **Why this analytic.** In Week 6 we emulated the `cmd.exe /C ping ... & del ...` pattern documented for Meduza Stealer. This analytic detects the shell launch itself, so it connects directly to that work.
 

@@ -243,7 +243,7 @@ Combined detection idea: raise severity when (1) `cmd.exe` has an unusual parent
 
 In Weeks 6 and 7 we studied T1059.003, linked it to a documented Meduza Stealer command string, emulated Meduza-like behaviors safely, and mapped them to ATT&CK. We selected the CAR analytic *Processes Spawning cmd.exe*, implemented it in Splunk and confirmed that the emulated chain `powershell.exe → cmd.exe (ping + del)` is captured by Sysmon Event ID 1. We also listed which Meduza behaviors this analytic does not cover.
 
-> **Note on AI use:** The report structure, the simulation script and the query templates were prepared with the help of an AI tool (Claude), including debugging the Splunk queries. Lab execution, observed results and screenshots are the author's own.
+> **Note on AI use:** The simulation script and the query templates were prepared with the help of an AI tool (Claude Sonnet 5.5), including debugging the Splunk queries. Lab execution, observed results and screenshots are the author's own.
 
 ## References
 

@@ -67,7 +67,7 @@ Phase 9:   cleanup, snapshot revert
 
 ATT&CK Navigator layer
 
-We visualized the plan as an ATT&CK Navigator layer (week8_meduza_layer.json). Green techniques were executed in Week 6, yellow techniques are planned (Phases 5, 7, 8), and grey techniques are excluded for safety.
+We visualized the plan as an ATT&CK Navigator layer ([`week8_meduza_layer.json`](./images/week8_meduza_layer.json)). Green techniques were executed in Week 6, yellow techniques are planned (Phases 5, 7, 8), and grey techniques are excluded for safety.
 
 ATT&CK Navigator layer
 

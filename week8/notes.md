@@ -78,7 +78,7 @@ Open the layer in ATT&CK Navigator: [Meduza emulation plan layer](https://mitre-
 | 1 | Hunt 3 (user-writable path), Week 5 | none expected |
 | 2, 4 | CAR-2013-02-003 Processes Spawning cmd.exe (Week 7) + `ping`/`del` refinement | depends on the parent being unusual |
 | 3 | DNS query in Sysmon EID 22 (seen in Splunk, Week 6) | no analytic yet; a single DNS lookup is weak evidence on its own |
-| 5 | none | needs registry events exported to Splunk (EID 12/13) and a persistence analytic; the analytic is still to be chosen from CAR |
+| 5 | Persistence | needs registry events exported to Splunk (EID 12/13) and a persistence analytic; the analytic is still to be chosen from CAR |
 | 8 | Hunt 2 (IP:port, EID 3), Week 5 | the lab IP/port must be added to the hunt |
 
 **Note.** Our Week 6 CSV export contained only Sysmon Event IDs 1, 3 and 22. Persistence (Phase 5) needs registry events, so the export must include EID 12/13 (and EID 11 for file creation) before that phase can be validated.

@@ -1,0 +1,178 @@
+{
+  "name": "Meduza Stealer emulation plan (Week 8)",
+  "versions": {
+    "attack": "18",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Adversary emulation plan for Meduza Stealer-like behavior: green = executed in Week 6, yellow = planned, grey = excluded for safety.",
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "average",
+    "showID": true,
+    "showName": true,
+    "showAggregateScores": false,
+    "countUnscored": false,
+    "expandedSubtechniques": "annotated"
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1204.002",
+      "color": "#8ec843",
+      "comment": "Executed in Week 6 (S1): script run from Downloads\\sim",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1059.001",
+      "color": "#8ec843",
+      "comment": "Executed (S1-S5): PowerShell runs the simulation script and starts cmd.exe",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1059.003",
+      "color": "#8ec843",
+      "comment": "Executed (S5): cmd.exe /c ping ... & del ...; seen as Sysmon EID 1",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1614",
+      "color": "#8ec843",
+      "comment": "Executed (S2): region code read, print only; no Sysmon event expected",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1012",
+      "color": "#8ec843",
+      "comment": "Executed (S3): count of Uninstall registry entries; no dedicated event found",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1016",
+      "color": "#8ec843",
+      "comment": "Executed (S4): DNS lookup of api.ipify.org; seen as Sysmon EID 22",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1497.003",
+      "color": "#8ec843",
+      "comment": "Executed (S5): ping used as a delay",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1070.004",
+      "color": "#8ec843",
+      "comment": "Executed (S5): one dummy file deleted; possible mapping only, not confirmed by the source",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1547.001",
+      "color": "#ffe766",
+      "comment": "Planned (Phase 5): harmless Run-key value, removed in cleanup. Not documented for Meduza in our sources",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1005",
+      "color": "#ffe766",
+      "comment": "Planned (Phase 7): read a dummy text file",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1132.001",
+      "color": "#ffe766",
+      "comment": "Planned (Phase 8): Base64-encode dummy data",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1041",
+      "color": "#ffe766",
+      "comment": "Planned (Phase 8): send dummy data over TCP to a lab listener (host-only network)",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1555.003",
+      "color": "#bdbdbd",
+      "comment": "Not executed: browser credential access excluded for safety",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1539",
+      "color": "#bdbdbd",
+      "comment": "Not executed: browser cookie theft excluded for safety",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ff6666ff",
+      "#ffe766ff",
+      "#8ec843ff"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "Executed (Week 6)",
+      "color": "#8ec843"
+    },
+    {
+      "label": "Planned (not executed)",
+      "color": "#ffe766"
+    },
+    {
+      "label": "Excluded for safety",
+      "color": "#bdbdbd"
+    }
+  ],
+  "metadata": [],
+  "links": [],
+  "showTacticRowBackground": false,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false
+}

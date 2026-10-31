@@ -65,6 +65,14 @@ Phase 7-8: read dummy data  ->  Base64  ->  TCP to lab listener
 Phase 9:   cleanup, snapshot revert
 ```
 
+ATT&CK Navigator layer
+
+We visualized the plan as an ATT&CK Navigator layer (week8_meduza_layer.json). Green techniques were executed in Week 6, yellow techniques are planned (Phases 5, 7, 8), and grey techniques are excluded for safety.
+
+ATT&CK Navigator layer
+
+Figure 36. ATT&CK Navigator layer of the Meduza emulation plan (green: executed, yellow: planned, grey: excluded).
+
 ## 8.6 Detection coverage (what we expect to see)
 
 | Phase | Detection we already have | Gap |

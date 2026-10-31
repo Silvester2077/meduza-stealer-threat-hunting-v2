@@ -69,9 +69,7 @@ ATT&CK Navigator layer
 
 We visualized the plan as an ATT&CK Navigator layer ([`week8_meduza_layer.json`](./images/week8_meduza_layer.json)). Green techniques were executed in Week 6, yellow techniques are planned (Phases 5, 7, 8), and grey techniques are excluded for safety.
 
-ATT&CK Navigator layer
-
-Figure 36. ATT&CK Navigator layer of the Meduza emulation plan (green: executed, yellow: planned, grey: excluded).
+Open the layer in ATT&CK Navigator: [Meduza emulation plan layer](https://mitre-attack.github.io/attack-navigator/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2FSilvester2077%2Fmeduza-stealer-threat-hunting-v2%2Fmain%2Fweek8%2Fimages%2Fweek8_meduza_layer.json)
 
 ## 8.6 Detection coverage (what we expect to see)
 

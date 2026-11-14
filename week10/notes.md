@@ -83,7 +83,7 @@ Topic: analysis of APT29 TTPs, mapping to MITRE ATT&CK, and comparison with Medu
 | MITRE ATT&CK (Enterprise) | v20 (shown in Navigator → Layer Controls), accessed [14.11.2026] |
 | ATT&CK Navigator | web version [MITRE ATT&CK v20], https://mitre-attack.github.io/attack-navigator/ |
 | Browser used | [Microsoft Edge] |
-| APT29 group page | https://attack.mitre.org/groups/G0016/ , accessed [FILL: 14.11.2026] |
+| APT29 group page | https://attack.mitre.org/groups/G0016/ , accessed [14.11.2026] |
 
 File: `week10_apt29_meduza_layer.json` (open in ATT&CK Navigator → Open Existing Layer → Upload from local). Colors: **red** = Meduza only, **blue** = APT29 only, **purple** = both. The layer has 27 techniques: 7 in both, 6 Meduza only, 14 APT29 only.
 

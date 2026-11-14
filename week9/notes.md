@@ -98,7 +98,8 @@ Invoke-AtomicTest T1547.001 -ShowDetailsBrief
 Invoke-AtomicTest T1547.001 -TestNames "Reg Key Run" -ShowDetails
 ```
 
-[INSERT Image 1 HERE]
+<img width="825" height="400" alt="image" src="https://github.com/user-attachments/assets/a8fb80d8-cf15-4a1c-9727-e0b1f09a5986" />
+
 
 *Figure 36. Invoke-AtomicRedTeam installed, `-ShowDetailsBrief` output for T1547.001 (T1547.001-1 "Reg Key Run" is the test used for A7).*
 
@@ -114,27 +115,33 @@ For C2 a listener was started on the Linux VM first: `nc -lvnp 15666 > received.
 
 The script ran the tests in sequence and wrote one line per step to `run_log.csv`. The whole run took about three minutes (08:46:46Z – 08:49:56Z). For A1 the prerequisite (the batch file `T1059.003_script.bat`) was created automatically and the test finished with exit code 0. For A3 two tests with the same name were run (T1082-1 and T1082-28). A4 printed the Windows IP configuration, A6 returned the system language `0409` (English, US), and A7 reported "The operation completed successfully." After the last step the script ran `-Cleanup` for all atomic tests and reminded us to export the logs before reverting the snapshot.
 
-[INSERT Image 3 HERE]
+<img width="960" height="487" alt="image" src="https://github.com/user-attachments/assets/e0208e7e-c90a-4a25-9e8f-050b961a3b4a" />
+
 
 *Figure 37a. Output of `meduza_atomic_run.ps1`: A1 (prerequisite met, test executed) and the start of A3 (T1082 System Information Discovery).*
 
-[INSERT Image 4 HERE]
+<img width="636" height="341" alt="image" src="https://github.com/user-attachments/assets/a07a1b88-3c54-412a-b533-949266889087" />
+
 
 *Figure 37b. Output of `meduza_atomic_run.ps1`: end of A3 (T1082-1 and T1082-28) and A4 (T1016 System Network Configuration Discovery).*
 
-[INSERT Image 5 HERE]
+<img width="652" height="409" alt="image" src="https://github.com/user-attachments/assets/545f3bd7-4734-4788-b29b-267d66e8915b" />
+
 
 *Figure 37c. Output of `meduza_atomic_run.ps1`: end of A5 (T1012), A6 (T1614.001, language 0409) and A7 (T1547.001-1 Reg Key Run).*
 
-[INSERT Image 6 HERE]
+<img width="757" height="500" alt="image" src="https://github.com/user-attachments/assets/14f1b952-b82e-4f4a-9288-aedb4176ee79" />
+
 
 *Figure 37d. Output of `meduza_atomic_run.ps1`: custom steps C1 and C2, path of `run_log.csv` and cleanup of all atomic tests.*
 
-[INSERT Image 2 HERE]
+<img width="535" height="253" alt="image" src="https://github.com/user-attachments/assets/4ea1bce4-3775-45e1-9f78-14965bf7dd0a" />
+
 
 *Figure 38. `run_log.csv`: eight steps with status "executed" (A1, A3, A4, A5, A6, A7, C1, C2); A2 is not in the log.*
 
-[INSERT Image 7 HERE]
+<img width="816" height="91" alt="image" src="https://github.com/user-attachments/assets/b0d44436-b2a8-429d-a7bd-20408f1d64d6" />
+
 
 *Figure 39. Linux listener (`labvm`) received the Base64 dummy data; decoded text: "DUMMY DATA - not a real secret - 2026-11-14T00:49:56.4038187-08:00".*
 
@@ -151,7 +158,8 @@ index=sysmon
 | stats count by EventCode
 ```
 
-[INSERT Image 8 HERE]
+<img width="1000" height="233" alt="image" src="https://github.com/user-attachments/assets/e602065d-502d-470c-80a8-061258c34805" />
+
 
 *Figure 40. PowerShell (exported CSV): event count by EventCode (EID 1 – 352, EID 3 – 1, EID 11 – 39, EID 13 – 3, EID 22 – 40, EID 4104 – 670).*
 

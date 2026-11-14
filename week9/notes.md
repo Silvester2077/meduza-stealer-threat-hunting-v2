@@ -180,15 +180,15 @@ Fill in after the run. If a query returns nothing, write "No matching events in 
 
 | # | Technique | Ran? | Event in Splunk? | Event ID | Detection that fired | Notes |
 |---|---|---|---|---|---|---|
-| A1 | T1059.003 | TODO | TODO | 1 | CAR-2013-02-003 (Week 7)? | |
-| A2 | T1059.001 | TODO | TODO | 1 / 4104 | — | |
-| A3 | T1082 | TODO | TODO | 1 | discovery burst? | |
-| A4 | T1016 | TODO | TODO | 1 | discovery burst? | |
-| A5 | T1012 | TODO | TODO | 1 | discovery burst? | |
-| A6 | T1614.001 | TODO | TODO | 1 | discovery burst? | |
-| A7 | T1547.001 | TODO | TODO | 13 | Run-key query | Week 8 Phase 5 |
-| C1 | T1005 | TODO | TODO | 1 / 11 | — | Week 8 Phase 7 |
-| C2 | T1132.001, T1041 | TODO | TODO | 3 | Hunt 2 (Week 5) | Week 8 Phase 8 |
+| A1 | T1059.003 | yes | TODO | 1 | CAR-2013-02-003 (Week 7)? | |
+| A2 | T1059.001 | yes | TODO | 1 / 4104 | — | |
+| A3 | T1082 | yes | TODO | 1 | discovery burst? | |
+| A4 | T1016 | yes | TODO | 1 | discovery burst? | |
+| A5 | T1012 | yes | TODO | 1 | discovery burst? | |
+| A6 | T1614.001 | yes | TODO | 1 | discovery burst? | |
+| A7 | T1547.001 | yes | TODO | 13 | Run-key query | Week 8 Phase 5 |
+| C1 | T1005 | TODO | yes | 1 / 11 | — | Week 8 Phase 7 |
+| C2 | T1132.001, T1041 | yes | TODO | 3 | Hunt 2 (Week 5) | Week 8 Phase 8 |
 
 ### Update of the Week 8 plan status
 

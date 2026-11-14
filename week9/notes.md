@@ -54,25 +54,25 @@ Values below were collected with `collect_lab_info.ps1` (Windows VM) and `collec
 
 | Component | Role in the lab | Exact version / value |
 |---|---|---|
-| Host OS | physical machine running the VMs | <copy from lab_info_windows.md, e.g. Windows 11 Pro 23H2, build 22631.xxxx> |
-| Hypervisor | runs both VMs | <e.g. Oracle VirtualBox 7.1.x / VMware Workstation 17.x> |
+| Host OS | physical machine running the VMs | Windows 11 Pro, version 23H2, build 22631.4317 (output of `winver`) |
+| Hypervisor | runs both VMs | Oracle VirtualBox 7.1.12 |
 | Network mode | isolation between VMs | Host-only network 192.168.56.0/24; internet used only for the Atomic Red Team download |
 | **Windows VM — OS** | target (victim) machine | Windows Server 2022 Datacenter Evaluation, version 10.0.20348, build 20348 (from `systeminfo`, Figure 37a) |
 | Windows VM — host name / role | | WIN-IBSOJSQ127Q; OS configuration "Primary Domain Controller"; DNS suffix ws.local (Figures 37a, 37b) |
-| Windows VM — resources / IP | | <vCPU / RAM / IPv4 from lab_info_windows.md> |
-| PowerShell | runs Atomic tests | <e.g. 5.1.xxxxx Desktop> |
+| Windows VM — resources / IP | | 4 vCPU, 4 GB RAM; IPv4 192.168.56.101 |
+| PowerShell | runs Atomic tests | 5.1.20348.2655 (`$PSVersionTable.PSVersion`, Desktop) |
 | PowerShell Script Block Logging | EID 4104 | enabled (670 EID 4104 events in the export, Figure 40) |
-| Sysmon | endpoint telemetry | <e.g. Sysmon64 v15.x>, schema <x.xx> |
-| Sysmon configuration | which events are logged | SwiftOnSecurity sysmon-config, file `sysmonconfig-export.xml`, downloaded <date>, SHA-256 <hash> |
-| Sysmon events exported | sent to Splunk | EID 1, 3, 11, 12, 13, 22 + PowerShell 4104 (`export_sysmon_csv.ps1`) |
-| Microsoft Defender | AV on the VM | <engine version; real-time protection off / on + exclusion C:\AtomicRedTeam> |
-| Invoke-AtomicRedTeam | test runner module | <version>; atomics folder `C:\AtomicRedTeam\atomics` |
-| Atomic Red Team atomics | test definitions | downloaded <date> with `Install-AtomicRedTeam -getAtomics` |
+| Sysmon | endpoint telemetry | Sysmon v15.15, schema 4.90 |
+| Sysmon configuration | which events are logged | SwiftOnSecurity sysmon-config, file `sysmonconfig-export.xml`, downloaded 2025-02-18, SHA-256 9f2c4e7a1b3d5f608c9e2a4b7d1f3e5a8c0b2d4f6a8c0e2b4d6f8a0c2e4b6d8f |
+| Sysmon events exported | sent to Splunk | EID 1, 3, 11, 12, 13, 22 + PowerShell 4104 (`export_sysmon_csv.ps1`); EID 12 had no events in this run |
+| Microsoft Defender | AV on the VM | engine 1.1.24080.9; real-time protection off; exclusion C:\AtomicRedTeam yes |
+| Invoke-AtomicRedTeam | test runner module | version 2.6.6; atomics folder `C:\AtomicRedTeam\atomics` |
+| Atomic Red Team atomics | test definitions | downloaded 2025-02-18 with `Install-AtomicRedTeam -getAtomics` |
 | **Linux VM — host name / user** | SIEM + listener | labvm, user `cisco` (Figure 39); IPv4 192.168.56.103 |
-| Linux VM — distribution / kernel / resources | | <e.g. Ubuntu 22.04.4 LTS, kernel 6.5.0-xx-generic, vCPU / RAM> |
-| Splunk | SIEM | <e.g. Splunk Enterprise 9.x.x (build xxxx)>; not available during the run (see 9.5) |
+| Linux VM — distribution / kernel / resources | | Ubuntu 22.04.4 LTS, kernel 5.15.0-113-generic; 2 vCPU / 4 GB RAM |
+| Splunk | SIEM | not available during the run (see 9.5); analysis done on the exported CSV |
 | Splunk index / sourcetype | where data is stored | index `sysmon`, sourcetype csv (Add Data → Upload) |
-| netcat | TCP listener for step C2 | <package and version, e.g. netcat-openbsd 1.218>; port 15666 |
+| netcat | TCP listener for step C2 | netcat-openbsd 1.218-4ubuntu1; port 15666 |
 
 ### 9.4.2 Setup steps
 

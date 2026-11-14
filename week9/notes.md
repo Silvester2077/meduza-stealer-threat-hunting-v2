@@ -119,7 +119,7 @@ For C2 start a listener on the Linux VM first: `nc -lvnp 15666 > received.txt` (
 
 ### Splunk queries
 
-Same data note as Week 7: on CSV-uploaded data, field filters in the base search did not work, so we select with keywords first and filter with `where`.
+Splunk VM was unavailable during the run; the same logic was applied to the exported CSV in PowerShell.
 
 **Overview of produced events**
 
@@ -170,9 +170,9 @@ index=sysmon 15666
 | stats count min(_time) as first_seen by Computer Image DestinationIp DestinationPort
 ```
 
-*Figure 39. Splunk: `stats count by EventCode` after the Atomic run.*\
-*Figure 40. Splunk: Run-key event (EID 13) for test A7.*\
-*Figure 41. Splunk: `powershell.exe` → lab IP:15666 (EID 3) for step C2.*
+*Figure 39. PowerShell (exported CSV):
+*Figure 40. PowerShell (exported CSV):
+*Figure 41. PowerShell (exported CSV):
 
 ## 9.6 Results
 

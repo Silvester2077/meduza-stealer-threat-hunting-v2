@@ -2,7 +2,7 @@
 
 Topic: Meduza Stealer, running selected Atomic Red Team tests and analyzing the results in Splunk.
 
-> **Status:** test selection, commands and queries are prepared. Results in 9.6 must be filled in **only** after the tests are actually run in the lab. Nothing is claimed in advance.
+> **Status:** the tests were run in the lab on 2026-11-14 (UTC 08:46–08:50). Results in 9.6 contain only what is confirmed by the run log, the console output, the Linux listener and the exported CSV.
 
 ## 9.1 Key terminology
 
@@ -23,59 +23,56 @@ In Week 8 we wrote an emulation plan. Phases 1–4 were executed in Week 6 with 
 
 1. run standard, repeatable tests for the planned phases;
 2. re-run Phase 2–3 behaviors with standard tests instead of our own script;
-3. check in Splunk which tests are visible and which detections from Weeks 5–7 fire.
+3. check which tests produce telemetry and which detections from Weeks 5–7 can be applied to it.
 
 ## 9.3 Test selection
 
-| # | Week 8 phase | Technique | Atomic test (verify name/number) | Why for Meduza |
-|---|---|---|---|---|
-| A1 | 2 Execution | T1059.003 Windows Command Shell | "Create and Execute Batch Script" | Meduza uses `cmd.exe /C ...` (Splunk analysis, Week 6) |
-| A2 | 2 Execution | T1059.001 PowerShell | an offline test without downloads (choose with `-ShowDetailsBrief`) | syllabus example; our emulation chain starts from PowerShell |
-| A3 | 3 Discovery | T1082 System Information Discovery | "System Information Discovery" | stealers collect host info for the victim log |
-| A4 | 3 Discovery | T1016 System Network Configuration Discovery | "System Network Configuration Discovery on Windows" | public-IP / network checks (Week 6, S4) |
-| A5 | 3 Discovery | T1012 Query Registry | "Query Registry" | installed-software registry query (Week 6, S3) |
-| A6 | 3 Discovery | T1614.001 System Language Discovery | "Discover System Language by Registry Query" | region/language check (documented by Splunk) |
-| A7 | **5 Persistence** | T1547.001 Registry Run Keys | "Reg Key Run" | Week 8 Phase 5 (generic technique, **not confirmed** for Meduza) |
-| C1 | **7 Collection** | T1005 Data from Local System | custom step (dummy file), see script | no safe Windows atomic that reads only one dummy file |
-| C2 | **8 Exfiltration** | T1132.001 + T1041 | custom step: Base64 + TCP to lab listener | Windows atomics for T1132.001 are not available; T1041 atomic sends to an external URL by default |
+| # | Week 8 phase | Technique | Atomic test | Why for Meduza | Run status |
+|---|---|---|---|---|---|
+| A1 | 2 Execution | T1059.003 Windows Command Shell | T1059.003-1 "Create and Execute Batch Script" | Meduza uses `cmd.exe /C ...` (Splunk analysis, Week 6) | executed |
+| A2 | 2 Execution | T1059.001 PowerShell | an offline test without downloads | syllabus example; our emulation chain starts from PowerShell | **not executed** (see 9.8) |
+| A3 | 3 Discovery | T1082 System Information Discovery | T1082-1 and T1082-28 "System Information Discovery" | stealers collect host info for the victim log | executed |
+| A4 | 3 Discovery | T1016 System Network Configuration Discovery | T1016-1 "System Network Configuration Discovery on Windows" | public-IP / network checks (Week 6, S4) | executed |
+| A5 | 3 Discovery | T1012 Query Registry | T1012-1 "Query Registry" | installed-software registry query (Week 6, S3) | executed |
+| A6 | 3 Discovery | T1614.001 System Language Discovery | T1614.001-1 "Discover System Language by Registry Query" | region/language check (documented by Splunk) | executed |
+| A7 | **5 Persistence** | T1547.001 Registry Run Keys | T1547.001-1 "Reg Key Run" | Week 8 Phase 5 (generic technique, **not confirmed** for Meduza) | executed |
+| C1 | **7 Collection** | T1005 Data from Local System | custom step (dummy file), see script | no safe Windows atomic that reads only one dummy file | executed |
+| C2 | **8 Exfiltration** | T1132.001 + T1041 | custom step: Base64 + TCP to lab listener | Windows atomics for T1132.001 are not available; T1041 atomic sends to an external URL by default | executed |
 
 **Not selected:**
 
 - **T1003 OS Credential Dumping** (syllabus example). Meduza steals browser data, not LSASS memory, and the T1003 atomics download or run credential-dumping tools. Out of scope for safety; mentioned for completeness.
 - **T1555.003 Credentials from Web Browsers**: excluded, as in Week 8 Phase 6 (touches real browser credential stores).
 
-> Verify every test name and number with `Invoke-AtomicTest <TID> -ShowDetailsBrief` before running — names and numbers can change between Atomic Red Team versions.
+> Test names and numbers were verified with `Invoke-AtomicTest <TID> -ShowDetailsBrief` before the run (for example T1547.001-1 "Reg Key Run", Figure 36); they can change between Atomic Red Team versions.
 
 ## 9.4 Lab setup
 
 ### 9.4.1 Lab environment (exact versions)
 
-All values below were collected automatically with `collect_lab_info.ps1` (Windows VM) and `collect_lab_info.sh` (Linux VM) on <YYYY-MM-DD>. Raw output: `lab_info_windows.md`, `lab_info_linux.md`.
+Values below were collected with `collect_lab_info.ps1` (Windows VM) and `collect_lab_info.sh` (Linux VM) on 2026-11-14. Raw output: `lab_info_windows.md`, `lab_info_linux.md`. Values marked `<...>` must be copied from these two files.
 
 | Component | Role in the lab | Exact version / value |
 |---|---|---|
-| Host OS | physical machine running the VMs | <e.g. Windows 11 Pro 23H2, build 22631.xxxx> |
-| Hypervisor | runs both VMs | <e.g. Oracle VirtualBox 7.1.x / VMware Workstation 17.x> (Help → About) |
-| Network mode | isolation between VMs | <Host-only adapter, network 192.168.56.0/24, no NAT/internet during the run> |
-| **Windows VM — OS** | target (victim) machine | <Windows 10/11 edition, DisplayVersion, build> |
-| Windows VM — resources | | <vCPU / RAM> |
-| Windows VM — IP | | <IPv4> |
+| Host OS | physical machine running the VMs | <copy from lab_info_windows.md, e.g. Windows 11 Pro 23H2, build 22631.xxxx> |
+| Hypervisor | runs both VMs | <e.g. Oracle VirtualBox 7.1.x / VMware Workstation 17.x> |
+| Network mode | isolation between VMs | Host-only network 192.168.56.0/24; internet used only for the Atomic Red Team download |
+| **Windows VM — OS** | target (victim) machine | Windows Server 2022 Datacenter Evaluation, version 10.0.20348, build 20348 (from `systeminfo`, Figure 37a) |
+| Windows VM — host name / role | | WIN-IBSOJSQ127Q; OS configuration "Primary Domain Controller"; DNS suffix ws.local (Figures 37a, 37b) |
+| Windows VM — resources / IP | | <vCPU / RAM / IPv4 from lab_info_windows.md> |
 | PowerShell | runs Atomic tests | <e.g. 5.1.xxxxx Desktop> |
-| PowerShell Script Block Logging | EID 4104 | enabled |
+| PowerShell Script Block Logging | EID 4104 | enabled (670 EID 4104 events in the export, Figure 40) |
 | Sysmon | endpoint telemetry | <e.g. Sysmon64 v15.x>, schema <x.xx> |
 | Sysmon configuration | which events are logged | SwiftOnSecurity sysmon-config, file `sysmonconfig-export.xml`, downloaded <date>, SHA-256 <hash> |
 | Sysmon events exported | sent to Splunk | EID 1, 3, 11, 12, 13, 22 + PowerShell 4104 (`export_sysmon_csv.ps1`) |
-| Microsoft Defender | AV on the VM | engine <x>, real-time protection <off / on + exclusion C:\AtomicRedTeam> |
-| Invoke-AtomicRedTeam | test runner module | <version> |
+| Microsoft Defender | AV on the VM | <engine version; real-time protection off / on + exclusion C:\AtomicRedTeam> |
+| Invoke-AtomicRedTeam | test runner module | <version>; atomics folder `C:\AtomicRedTeam\atomics` |
 | Atomic Red Team atomics | test definitions | downloaded <date> with `Install-AtomicRedTeam -getAtomics` |
-| **Linux VM — distribution** | SIEM + listener | <e.g. Ubuntu 22.04.4 LTS> |
-| Linux VM — kernel | | <e.g. 6.5.0-xx-generic x86_64> |
-| Linux VM — resources / IP | | <vCPU / RAM / IPv4> |
-| Splunk | SIEM | <e.g. Splunk Enterprise 9.x.x (build xxxx), Free/Trial license> |
-| Splunk index / sourcetype | where data is stored | index `sysmon`, sourcetype <csv> (Add Data → Upload) |
-| netcat | TCP listener for step C2 | <package and version, e.g. netcat-openbsd 1.218> |
-
-> Rule for this report: every tool is given with its exact version, its role, and where/when it was obtained. Values in `< >` must be replaced with the real output — do not leave guesses.
+| **Linux VM — host name / user** | SIEM + listener | labvm, user `cisco` (Figure 39); IPv4 192.168.56.103 |
+| Linux VM — distribution / kernel / resources | | <e.g. Ubuntu 22.04.4 LTS, kernel 6.5.0-xx-generic, vCPU / RAM> |
+| Splunk | SIEM | <e.g. Splunk Enterprise 9.x.x (build xxxx)>; not available during the run (see 9.5) |
+| Splunk index / sourcetype | where data is stored | index `sysmon`, sourcetype csv (Add Data → Upload) |
+| netcat | TCP listener for step C2 | <package and version, e.g. netcat-openbsd 1.218>; port 15666 |
 
 ### 9.4.2 Setup steps
 
@@ -87,7 +84,7 @@ All values below were collected automatically with `collect_lab_info.ps1` (Windo
 | Script | Purpose |
 |---|---|
 | `collect_lab_info.ps1` / `collect_lab_info.sh` | collect exact versions for 9.4.1 |
-| `meduza_atomic_run.ps1` | runs tests A1–A7, custom steps C1–C2, writes `run_log.csv`, cleanup |
+| `meduza_atomic_run.ps1` | runs tests A1, A3–A7, custom steps C1–C2, writes `run_log.csv`, cleanup |
 | `export_sysmon_csv.ps1` | exports events to CSV for the Splunk upload |
 
 ```powershell
@@ -101,25 +98,51 @@ Invoke-AtomicTest T1547.001 -ShowDetailsBrief
 Invoke-AtomicTest T1547.001 -TestNames "Reg Key Run" -ShowDetails
 ```
 
-*Figure 36. Invoke-AtomicRedTeam installed, `-ShowDetailsBrief` output for T1547.001.*
+[INSERT Image 1 HERE]
+
+*Figure 36. Invoke-AtomicRedTeam installed, `-ShowDetailsBrief` output for T1547.001 (T1547.001-1 "Reg Key Run" is the test used for A7).*
 
 ## 9.5 Running the tests
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\meduza_atomic_run.ps1 -ListenerIp <lab-linux-ip>
+powershell -ExecutionPolicy Bypass -File .\meduza_atomic_run.ps1 -ListenerIp 192.168.56.103
 powershell -ExecutionPolicy Bypass -File .\export_sysmon_csv.ps1 -Minutes 60
 # then: Splunk → Settings → Add Data → Upload → index=sysmon (same as Week 6)
 ```
 
-For C2 start a listener on the Linux VM first: `nc -lvnp 15666 > received.txt` (port reused from our IOC only as a label; the target is our lab IP).
+For C2 a listener was started on the Linux VM first: `nc -lvnp 15666 > received.txt` (port 15666 is reused from our IOC only as a label; the target is our lab IP 192.168.56.103).
 
-*Figure 37. PowerShell output of `meduza_atomic_run.ps1` (user name redacted).*
+The script ran the tests in sequence and wrote one line per step to `run_log.csv`. The whole run took about three minutes (08:46:46Z – 08:49:56Z). For A1 the prerequisite (the batch file `T1059.003_script.bat`) was created automatically and the test finished with exit code 0. For A3 two tests with the same name were run (T1082-1 and T1082-28). A4 printed the Windows IP configuration, A6 returned the system language `0409` (English, US), and A7 reported "The operation completed successfully." After the last step the script ran `-Cleanup` for all atomic tests and reminded us to export the logs before reverting the snapshot.
 
-*Figure 38. Linux listener received the Base64 dummy data.*
+[INSERT Image 3 HERE]
+
+*Figure 37a. Output of `meduza_atomic_run.ps1`: A1 (prerequisite met, test executed) and the start of A3 (T1082 System Information Discovery).*
+
+[INSERT Image 4 HERE]
+
+*Figure 37b. Output of `meduza_atomic_run.ps1`: end of A3 (T1082-1 and T1082-28) and A4 (T1016 System Network Configuration Discovery).*
+
+[INSERT Image 5 HERE]
+
+*Figure 37c. Output of `meduza_atomic_run.ps1`: end of A5 (T1012), A6 (T1614.001, language 0409) and A7 (T1547.001-1 Reg Key Run).*
+
+[INSERT Image 6 HERE]
+
+*Figure 37d. Output of `meduza_atomic_run.ps1`: custom steps C1 and C2, path of `run_log.csv` and cleanup of all atomic tests.*
+
+[INSERT Image 2 HERE]
+
+*Figure 38. `run_log.csv`: eight steps with status "executed" (A1, A3, A4, A5, A6, A7, C1, C2); A2 is not in the log.*
+
+[INSERT Image 7 HERE]
+
+*Figure 39. Linux listener (`labvm`) received the Base64 dummy data; decoded text: "DUMMY DATA - not a real secret - 2026-11-14T00:49:56.4038187-08:00".*
+
+The decoded timestamp (00:49:56 at UTC−8) is the same moment as the C2 entry in the run log (08:49:56Z), so the data on the listener comes from this run. The `base64: invalid input` message appears after the full text was already printed; it is most likely caused by the missing trailing newline/padding in the received file and does not change the decoded content.
 
 ### Splunk queries
 
-Splunk VM was unavailable during the run; the same logic was applied to the exported CSV in PowerShell.
+Splunk VM was unavailable during the run; the same logic was applied to the exported CSV in PowerShell. The SPL below is the query form prepared for Splunk.
 
 **Overview of produced events**
 
@@ -128,7 +151,11 @@ index=sysmon
 | stats count by EventCode
 ```
 
-**A1 / A2 — CAR-2013-02-003 (Week 7) on Atomic output**
+[INSERT Image 8 HERE]
+
+*Figure 40. PowerShell (exported CSV): event count by EventCode (EID 1 – 352, EID 3 – 1, EID 11 – 39, EID 13 – 3, EID 22 – 40, EID 4104 – 670).*
+
+**A1 — CAR-2013-02-003 (Week 7) on Atomic output**
 
 ```spl
 index=sysmon cmd.exe
@@ -140,7 +167,7 @@ index=sysmon cmd.exe
 
 ```spl
 index=sysmon
-| where EventCode=1 AND match(Image,"(?i)\\(systeminfo|ipconfig|reg|netsh|chcp|hostname|whoami)\\.exe$")
+| where EventCode=1 AND match(Image,"(?i)\\\\(systeminfo|ipconfig|reg|netsh|chcp|hostname|whoami)\\.exe$")
 | bin _time span=5m
 | stats dc(Image) as tools values(Image) as images values(CommandLine) as cmd by _time Computer ParentImage
 | where tools>=3
@@ -170,33 +197,31 @@ index=sysmon 15666
 | stats count min(_time) as first_seen by Computer Image DestinationIp DestinationPort
 ```
 
-*Figure 39. PowerShell (exported CSV):
-*Figure 40. PowerShell (exported CSV):
-*Figure 41. PowerShell (exported CSV):
-
 ## 9.6 Results
 
-Fill in after the run. If a query returns nothing, write "No matching events in the available dataset" (as in Week 5) — do not assume.
+Sources: `run_log.csv` (Figure 38), console output (Figure 37), Linux listener (Figure 39) and the CSV event counts (Figure 40). Queries per test were not captured, so a detection is not marked as "fired" unless it was checked.
 
-| # | Technique | Ran? | Event in Splunk? | Event ID | Detection that fired | Notes |
+| # | Technique | Ran? | Events in exported CSV | Event ID | Detection that fired | Notes |
 |---|---|---|---|---|---|---|
-| A1 | T1059.003 | yes | TODO | 1 | CAR-2013-02-003 (Week 7)? | |
-| A2 | T1059.001 | yes | TODO | 1 / 4104 | — | |
-| A3 | T1082 | yes | TODO | 1 | discovery burst? | |
-| A4 | T1016 | yes | TODO | 1 | discovery burst? | |
-| A5 | T1012 | yes | TODO | 1 | discovery burst? | |
-| A6 | T1614.001 | yes | TODO | 1 | discovery burst? | |
-| A7 | T1547.001 | yes | TODO | 13 | Run-key query | Week 8 Phase 5 |
-| C1 | T1005 | TODO | yes | 1 / 11 | — | Week 8 Phase 7 |
-| C2 | T1132.001, T1041 | yes | TODO | 3 | Hunt 2 (Week 5) | Week 8 Phase 8 |
+| A1 | T1059.003 | yes (08:46:46Z, exit code 0) | EID 1 present in the export (352 in total); per-test match not checked | 1 | CAR-2013-02-003: not verified | Prerequisite batch file created automatically; the runner itself starts from PowerShell, so a hit is expected |
+| A2 | T1059.001 | **no** | — | 1 / 4104 | — | Not in `run_log.csv`; 670 EID 4104 events in the export come from the whole session, not from A2 |
+| A3 | T1082 | yes (08:47:57Z) | per-test match not checked | 1 | discovery burst: not verified | Two tests ran: T1082-1 and T1082-28 |
+| A4 | T1016 | yes (08:48:05Z) | per-test match not checked | 1 | discovery burst: not verified | `ipconfig /all`-type output shown in console |
+| A5 | T1012 | yes (08:49:31Z) | per-test match not checked | 1 | discovery burst: not verified | Test T1012-1 Query Registry |
+| A6 | T1614.001 | yes (08:49:39Z) | per-test match not checked | 1 | discovery burst: not verified | Language registry value `0409` returned |
+| A7 | T1547.001 | yes (08:49:48Z) | 3 EID 13 events in the export; TargetObject not checked | 13 | Run-key query: not verified | "The operation completed successfully"; cleanup executed; EID 12 not present in the export |
+| C1 | T1005 | yes (08:49:56Z) | EID 11: 39 in the export; match on `meduza_sim` not checked | 1 / 11 | — | Week 8 Phase 7 |
+| C2 | T1132.001, T1041 | yes (08:49:56Z) | 1 EID 3 event in the whole export (consistent with the C2 connection; port not checked) | 3 | Hunt 2 (Week 5): not verified | Data confirmed on the Linux listener (Figure 39) |
 
 ### Update of the Week 8 plan status
 
 | Week 8 phase | Status before | Status after Week 9 |
 |---|---|---|
-| 5 Persistence | planned | TODO (executed / not executed) |
-| 7 Collection | planned | TODO |
-| 8 Exfiltration | planned | TODO |
+| 2 Execution | executed (Week 6, own script) | repeated with Atomic: T1059.003 executed; T1059.001 not executed |
+| 3 Discovery | executed (Week 6, own script) | repeated with Atomic: T1082, T1016, T1012, T1614.001 executed |
+| 5 Persistence | planned | executed (T1547.001-1 Reg Key Run, cleaned up afterwards) |
+| 7 Collection | planned | executed (custom step C1 with a dummy file) |
+| 8 Exfiltration | planned | executed (custom step C2: Base64 dummy data sent to the lab listener and received) |
 
 ## 9.7 Detection coverage (gaps)
 
@@ -204,21 +229,24 @@ Fill in after the run. If a query returns nothing, write "No matching events in 
 |---|---|---|
 | Shell from unusual parent | CAR-2013-02-003 | Atomic framework itself runs from PowerShell → expected hit; allowlist needed in production |
 | Discovery | discovery burst query | Admin scripts also run systeminfo/ipconfig; use as a hunting lead only |
-| Persistence | Run-key query (EID 13) | Needs registry events in the export; only HKCU/HKLM Run covered |
+| Persistence | Run-key query (EID 13) | Needs registry events in the export (3 EID 13 events were exported); only HKCU/HKLM Run covered |
 | Exfiltration | Hunt 2 | Works only for a known IP:port; behavior-based detection still missing |
 | Browser credentials | Hunt 4 (Week 5) | Not tested (safety), coverage unknown |
 
 ## 9.8 Limitations
 
 - Atomic tests reproduce single techniques, not the full Meduza Stealer chain or the real malware.
+- A2 (T1059.001) was not executed in this run, so the PowerShell execution behavior was not re-tested with Atomic.
 - Phase 5 uses a generic technique; persistence is not confirmed for Meduza in our sources (Week 8).
+- Splunk was unavailable during the run; only event counts from the exported CSV were captured, so matching each test to its events and detections was not completed.
 - Logs are uploaded to Splunk as CSV in batches; `_time` may reflect upload time, use `UtcTime` (Week 7).
+- The Windows VM is Windows Server 2022 (evaluation) configured as a domain controller, not a typical user workstation.
 - One lab host, no baseline of normal activity → false-positive rate unknown.
 - Atomic test names/numbers depend on the installed version.
 
 ## 9.9 Conclusion
 
-We selected Atomic Red Team tests that match Meduza-like behaviors and the open phases of our Week 8 plan, prepared a run script, extended the Sysmon export with registry and file events, and wrote Splunk queries to check which detections fire. After the run, 9.6 shows which phases moved from "planned" to "executed" and which detection gaps remain. In Week 10 we compare these techniques with the TTPs of an APT group.
+We selected Atomic Red Team tests that match Meduza-like behaviors and the open phases of our Week 8 plan, prepared a run script, extended the Sysmon export with registry and file events, and ran the tests on 2026-11-14. Eight of nine steps were executed (A1, A3–A7, C1, C2); A2 was not. Phases 5 (persistence), 7 (collection) and 8 (exfiltration) moved from "planned" to "executed", and the exfiltration step was confirmed on the Linux listener. The exported CSV contains the expected event types (EID 1, 3, 11, 13, 22 and 4104), but the per-test detection check is still open because Splunk was not available. In Week 10 we compare these techniques with the TTPs of an APT group.
 
 > **Note on AI use:** Test selection, scripts and query templates were prepared with the help of an AI tool. Lab execution, observed results and screenshots are the team's own.
 

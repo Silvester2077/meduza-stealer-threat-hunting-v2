@@ -87,7 +87,8 @@ Topic: analysis of APT29 TTPs, mapping to MITRE ATT&CK, and comparison with Medu
 
 File: `week10_apt29_meduza_layer.json` (open in ATT&CK Navigator → Open Existing Layer → Upload from local). Colors: **red** = Meduza only, **blue** = APT29 only, **purple** = both. The layer has 27 techniques: 7 in both, 6 Meduza only, 14 APT29 only.
 
-![Figure 42](figure42_navigator.png)
+<img width="2640" height="2040" alt="figure42_navigator" src="https://github.com/user-attachments/assets/925d21cc-8966-40e6-8a5d-ead3170a2eb4" />
+
 
 *Figure 42. ATT&CK Navigator layer: APT29 vs Meduza Stealer.*
 

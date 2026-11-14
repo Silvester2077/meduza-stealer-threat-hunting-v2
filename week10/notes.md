@@ -115,7 +115,7 @@ APT29 covers the full attack lifecycle with supply chain, cloud identity abuse a
 
 ## References
 
-All sources accessed on [FILL: date].
+All sources accessed on [14.11.2026].
 
 1. MITRE ATT&CK — APT29 (G0016), SolarWinds Compromise (C0024)
 2. Mandiant (FireEye) — SUNBURST / SolarWinds supply chain analysis

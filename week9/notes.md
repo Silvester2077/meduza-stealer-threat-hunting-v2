@@ -79,7 +79,7 @@ All values below were collected automatically with `collect_lab_info.ps1` (Windo
 
 ### 9.4.2 Setup steps
 
-- Snapshot of the Windows VM taken before the run (snapshot name: <name>, date <date>).
+- Snapshot of the Windows VM taken before the run (snapshot name: before-week9, date 2026-11-14).
 - Windows VM network switched to host-only before the tests (internet used only for the Atomic Red Team download).
 - Change compared to Week 6: the CSV export now includes Sysmon **EID 11** (file create) and **EID 12/13** (registry), needed for Phase 5 (see Week 8, 8.6 note). PowerShell Script Block Logging (EID 4104) enabled.
 - Scripts in this folder:

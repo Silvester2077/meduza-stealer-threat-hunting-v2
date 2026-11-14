@@ -61,7 +61,7 @@ All values below were collected automatically with `collect_lab_info.ps1` (Windo
 | Windows VM — resources | | <vCPU / RAM> |
 | Windows VM — IP | | <IPv4> |
 | PowerShell | runs Atomic tests | <e.g. 5.1.xxxxx Desktop> |
-| PowerShell Script Block Logging | EID 4104 | <enabled> |
+| PowerShell Script Block Logging | EID 4104 | enabled |
 | Sysmon | endpoint telemetry | <e.g. Sysmon64 v15.x>, schema <x.xx> |
 | Sysmon configuration | which events are logged | SwiftOnSecurity sysmon-config, file `sysmonconfig-export.xml`, downloaded <date>, SHA-256 <hash> |
 | Sysmon events exported | sent to Splunk | EID 1, 3, 11, 12, 13, 22 + PowerShell 4104 (`export_sysmon_csv.ps1`) |
